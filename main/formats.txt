@@ -1,0 +1,15 @@
+sex ----- [{'male':'', 'female':''}]
+
+height ----- [{'height_tall':'', 'height_avg':'', 'height_short':''}]
+
+wealth ----- [{'wealth_rich':'', 'wealth_average':'', 'wealth_poor':''}]
+
+stature ----- [{'stature_robust':'', 'stature_average':'', 'stature_thin':'',  'stature_fat':''}]
+
+hair color ----- [{'hair_brown':'', 'hair_blonde':'', 'hair_black':'', 'hair_grey':''}]
+
+hair style ----- [{'hair_short':'', 'hair_long':'', 'hair_bald':'', 'hair_shaggy':''}]
+
+age ----- [{'age_young':'', 'age_mature':'', 'age_middle':'', 'age_aged':''}]
+
+eyes ----- [{'eyes_blue':'', 'eyes_brown':'', eyes_green':'', 'eyes_grey':''}]

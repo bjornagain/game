@@ -1,0 +1,79 @@
+@csrf_exempt
+def actions(request):
+    user = request.user
+    profile = user.profile
+    parse_request(request)
+    action = str(request.POST.get('action'))
+    name = str(request.POST.get('name'))
+    gender_nouns = pronouns(profile.sex)
+    charname = str(profile.charname)
+    #print charname, name, action
+    text = act1[name][action].format(  \
+                                      charname=charname, himher=gender_nouns['himher'], heshe=gender_nouns['heshe'], \
+                                      hishers=gender_nouns['hishers'], himselfherself=gender_nouns['himselfherself'], coat='coat', god='god')
+    archive = profile.textfield + text
+    profile.textfield = archive
+    profile.save()
+    return HttpResponse(text)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'questions2': "<fieldset id='wealthform'> Let me ask you a couple questions about your character, {charname}...<br><br> How wealthy is {charname}?  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios' id='optionsRadios1' value='rich' checked>Wealthy. This means {heshe} is part of the aristocratic class.  \
+                        </label>  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios' id='optionsRadios2' value='average'>Average wealth. {charname} is not nobility, and has spent {hishers} life working a trade.  \
+                        </label>  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios' id='optionsRadios2' value='poor'>Poor. You are part of the lowest class of society.   \
+                      </fieldset>  \
+                      \
+                      <button id='wealth' name='general' action='begin2'>Continue</button><button id=\'btn2\'>Continue</button
+                      
+                      
+                      
+                      
+                          <!-- Continue buttons-->
+    <script>
+    $(document).ready(function(){
+    
+    function updateText(text) {
+      $("#main").append(text);
+    }
+      <!--Name/Sex-->
+      //$("#btn1").click(function(){
+     
+        //$(this).hide();
+        
+        //$("#charform").hide();
+        
+        //var sex = $('input[name=optionsRadios]:checked', '#charform').val(); 
+        //var charname = $("#nameform").val();
+        //$.post('/name/', {charname: charname, sex: sex} , updateText);
+      //});
+      
+      <!--Wealth-->
+      //$("#wealth").click(function(){
+        
+        //$(this).hide();
+        
+        //var wealth = $('input[name=optionsRadios]:checked', '#wealthform').val(); 
+        //var name = $(this).attr("name");
+        //var action = $(this).attr("action");
+        //$.post('/name/', {name: name, action: action, wealth: wealth} , updateText);
+      //});
+    });
+    </script>

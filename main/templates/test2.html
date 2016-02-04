@@ -1,0 +1,194 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/jquery-1.11.1.js' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'main/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'main/jumbotron.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'main/custom.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'main/simple-sidebar.css' %}" />
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>{% block head_title %}GAME{% endblock %}</title>
+    
+    <style type="text/css">
+    #main {
+      font-size: 22px;
+      background-color: #B67410;
+      <!--padding:25px 50px;-->
+    }
+    #header {
+      font-size: 52px;
+    }
+    
+
+    </style>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+    
+    <script>
+    $(document).ready(function(){
+	
+	  function updateText(text) {
+      $("#main").append(text);
+      }
+
+      $("#johnsonactions").hide();
+      $("#reynoldactions").hide();
+	  $("#genactions").hide();
+      
+      <!-- General Actions -->
+      <!-- Look -->
+      $(document).on("click", "#look", function(){
+	    $(this).hide();
+		$.get('/actions/?name=look', updateText);
+	  });
+
+      <!-- Johnson -->
+      $(document).on("click", "#johnson", function(){
+        $("#johnsonactions").show();
+		$("#genactions").show();
+
+      });
+
+      $(document).on("click", ".talk", function(){
+        var name = $(this).attr("name");
+        var action = $(this).attr("action");
+	    $(this).hide();
+        querystring = '/actions/?name=' + name + '&action=' + action
+		$.get(querystring, updateText);
+	  });
+      
+      <!-- Reynold -->
+      $(document).on("click", "#reynold", function(){
+        $("#reynoldactions").show();
+        $("#genactions").show();
+      });
+
+    });
+    </script>
+    
+    
+    <!-- Continue button/submit name -->
+    <script>
+    $(document).ready(function(){
+    
+    function updateText(text) {
+      $("#main").append(text);
+      //$.post('/save_state/', {output: #main}, null);
+    }
+
+      $("#btn1").click(function(){
+     
+        $(this).hide();
+        
+        $("#nameform").hide();
+        
+        var name = $("#nameform").val();
+        $.post('/name/', {name: name} , updateText);
+      });
+    });
+    </script>
+
+
+  </head>
+
+  <body>
+
+
+        <!-- Top Navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <form class="navbar-form navbar-right" role="form">
+                <div class="form-group">
+                  <input type="text" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+            </div><!--/.navbar-collapse -->
+          </div>
+        </div>
+
+    <div class="container">    
+    <div class="row">
+    
+        <!-- Sidebar -->
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#">Start Bootstrap</a>
+                </li>
+                <li><a href="#">Dashboard</a>
+                </li>
+                <li><a href="#">Shortcuts</a>
+                </li>
+                <li><a href="#">Overview</a>
+                </li>
+                <li><a href="#">Events</a>
+                </li>
+                <li><a href="#">About</a>
+                </li>
+                <li><a href="#">Services</a>
+                </li>
+                <li><a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    
+        {% block content %}
+        <div class="col-md-10">
+        <div id="main">
+          <h1 id="header">Welcome to the game of fabulous adventure!</h1>
+            <p>To play the game, just read the text in this window.
+            If you see something underlined, that means you can click on it. You'll see some buttons pop up at the bottom of the window.
+            Those buttons will give you things you can do, with the underlined thing that you clicked on.
+            Sometimes you'll see buttons pop up at the bottom of the window that aren't for anything underlined.
+            These are more general actions you can take. Currently the text output does not automatically scroll down,
+            so if you click on something and the text window doesn't change, you probably just need to scroll down to see the new text.
+            You can always scroll back up to click on stuff. </p>
+            
+            
+            <input type="text" class="form-control" placeholder="Enter your character's name, and click Continue." id="nameform">
+            
+            <button id="btn1">Continue</button>
+        
+        </div>
+        </div>
+        {% endblock %}
+    </div>
+    </div>
+        
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>-->
+  </body>
+</html>

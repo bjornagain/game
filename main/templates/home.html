@@ -1,0 +1,126 @@
+{% load staticfiles %}
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!--<script rel="stylesheet" type="text/javascript" src="{% static 'jquery-1.11.1.js' %}"></script>-->
+<script rel="stylesheet" type="text/javascript" src="{% static 'custom.js' %}"></script>
+<!--<script rel="stylesheet" type="text/javascript" src="{% static 'jquery-1.11.1.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}" />-->
+<link rel="stylesheet" type="text/css" href="{% static 'jumbotron.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'simple-sidebar.css' %}" />
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+
+
+    <title>{% block head_title %}GAME{% endblock %}</title>
+
+    <style type="text/css">
+    #main {
+      font-size: 22px;
+      background-color: #B67410;
+      padding:10px 60px;
+      padding-right: 20px
+
+    }
+    #header {
+      font-size: 52px;
+    }
+    #char {
+      background-color: #B67410;
+      position: fixed;
+      display: inline;
+    }
+
+    #sidebar-wrapper {
+      color: #BFBFD4;
+    }
+    .btn {
+      color: #000000;
+      margin: 3px;
+    }
+    fieldset {
+        display: inline;
+        padding: 20px;
+    }
+    .form_but {
+        display: block;
+    }
+
+    </style>
+
+
+  </head>
+
+  <body>
+
+
+    <!-- Top Navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">{{username}}</a>
+          </div>
+          <div class="navbar-collapse collapse">
+              <!--<form class="navbar-form navbar-right" role="form">
+                <div class="form-group">
+                  <input type="text" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>-->
+          </div><!--/.navbar-collapse -->
+          </div>
+        </div>
+
+    <div class="container">
+    <div class="row">
+
+
+    <!-- Sidebar -->
+        <div class="col-md-2 col-sm-2" id="sidebar-wrapper">
+
+        </div>
+
+
+        {% block content %}
+        <div class="col-md-10 col-sm-8">
+          <div id="main">
+            {% autoescape off %}{{archive}}{% endautoescape %}
+
+          </div>
+        </div>
+        {% endblock %}
+
+        <div class="col-md-2 col-sm-2" id="char">
+          {{charname}}<br>
+          {{sex}}<br>
+          {{attrs}}
+        </div>
+
+    </div>
+    </div>
+
+
+  </body>
+</html>

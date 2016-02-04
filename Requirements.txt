@@ -1,0 +1,10 @@
+Django 1.6
+Docutils
+
+That's it!
+
+At the command prompt, run $python manage.py runserver, then in your browser go to 
+http://localhost:8000/accounts/register/
+
+and create an account. You'll then be directed to login, and once you login you'll be directed
+to the game page.

@@ -1,0 +1,24 @@
+.jumbotron {
+    background-color: #B67410;
+}
+
+.actionheader  {
+    color: #E0E0E0
+}
+#main {
+  font-size: 22px;
+  background-color: #B67410;
+  padding:12px 12px;
+  padding-right: 12px
+
+}
+#header {
+  font-size: 52px;
+}
+#char {
+  background-color: #B67410;
+}
+
+fieldset {
+    display: inline;
+}

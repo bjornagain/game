@@ -1,0 +1,3 @@
+10/14/15
+Last work was setting up inline forms so we can display multiple forms across a row, and submit multiple forms with one 'Continue' click. It appears to be working now, but if there
+are issues, revert the form js in custom.js to the general form function.
