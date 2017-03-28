@@ -1,10 +1,12 @@
 {% load staticfiles %}
-<link rel="stylesheet" type=type="text/javascript" href="{% static 'main/jquery-1.11.1.js' %}" />
-<link rel="stylesheet" type=type="text/javascript" href="{% static 'main/jquery-1.11.1.min.js' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'main/bootstrap.min.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'main/jumbotron.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'main/custom.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'main/simple-sidebar.css' %}" />
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'custom.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'jumbotron.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'simple-sidebar.css' %}" />
 
 
 <!DOCTYPE html>
@@ -15,98 +17,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
+
+
     <title>{% block head_title %}GAME{% endblock %}</title>
-    
+
     <style type="text/css">
     #main {
       font-size: 22px;
       background-color: #B67410;
-      padding:12px 150px;
+      padding-left: 200px;
+
     }
     #header {
       font-size: 52px;
     }
-    
-
-    </style>
-    
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js"></script>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-    <!-- Custom JavaScript for the Menu Toggle -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
-    </script>
-    
-    <script>
-    $(document).ready(function(){
-	
-	  function updateText(text) {
-      $("#main").append(text);
-      }
-
-      $("#johnsonactions").hide();
-      $("#reynoldactions").hide();
-	  $("#genactions").hide();
-      
-      <!-- General Actions -->
-      <!-- Look -->
-      $(document).on("click", "#look", function(){
-	    $(this).hide();
-		<!--$.get('/actions/?name=look', updateText);-->
-        $.post('/actions/', {action: 'look'} , updateText);
-	  });
-
-      <!-- Johnson -->
-      $(document).on("click", "#johnson", function(){
-        $("#johnsonactions").show();
-		$("#genactions").show();
-
-      });
-
-      $(document).on("click", ".talk", function(){
-        var name = $(this).attr("name");
-        var action = $(this).attr("action");
-	    $(this).hide();
-        querystring = '/actions/?name=' + name + '&action=' + action
-		$.post('/actions/', {action: action, name: name}, updateText);
-	  });
-      
-      <!-- Reynold -->
-      $(document).on("click", "#reynold", function(){
-        $("#reynoldactions").show();
-        $("#genactions").show();
-      });
-
-    });
-    </script>
-    
-    
-    <!-- Continue button/submit name -->
-    <script>
-    $(document).ready(function(){
-    
-    function updateText(text) {
-      $("#main").append(text);
+    #char {
+      background-color: #B67410;
+      position: fixed;
+      display: inline;
     }
 
-      $("#btn1").click(function(){
-     
-        $(this).hide();
-        
-        $("#nameform").hide();
-        
-        var name = $("#nameform").val();
-        $.post('/name/', {name: name} , updateText);
-      });
-    });
-    </script>
+    #sidebar-wrapper {
+      color: #BFBFD4;
+    }
+    .btn {
+      color: #000000;
+      margin: 3px;
+    }
+    fieldset {
+        display: inline;
+        padding: 20px;
+    }
+    .form_but {
+        display: block;
+    }
+
+    </style>
 
 
   </head>
@@ -114,90 +63,51 @@
   <body>
 
 
-        <!-- Top Navbar -->
+    <!-- Top Navbar -->
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Project name</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <!--<form class="navbar-form navbar-right" role="form">
-                <div class="form-group">
-                  <input type="text" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                  <input type="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>-->
-            </div><!--/.navbar-collapse -->
+              <a class="navbar-brand" href="#">{{username}}</a>
+          </div>
+          <div class="navbar-collapse collapse">
+          </div><!--/.navbar-collapse -->
           </div>
         </div>
 
-    <div class="container">    
+    <div class="container">
     <div class="row">
-    
-    
+
+
     <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-          <div id="genactions" class="sidebar-brand">
-		    <h3 class='actionheader'>General Actions</h3>
-			<button type="button" class="btn btn-inverse" id="look">Look around</button>
-          </div>
-          <div id="johnsonactions" class="sidebar-brand">
-		    <h3 class='actionheader'>What do you want to do with the bartender?</h3>
-            <button type="button" class="btn btn-inverse talk" name="johnson" action="talk">Talk</button>
-            <button type="button" class="btn btn-inverse" id="attack">Attack</button>
-          </div>
-          <div id="reynoldactions" class="sidebar-brand">
-		    <h3 class='actionheader'>What do you want to do with the shabby man?</h3>
-            <button type="button" class="btn btn-inverse talk" name="reynold" action="talk">Talk</button>
-            <button type="button" class="btn btn-inverse" id="attack">Attack</button>
+        <div class="col-md-2 col-sm-2" id="sidebar-wrapper">
+
         </div>
-        </div>
-    
-        <!-- Sidebar -->
-        <!--<div class="col-md-2" id="sidebar-wrapper">
-		<div id="genactions" class="sidebar-brand">
-		    <h3>General Actions</h3>
-			<button type="button" class="btn btn-inverse" id="look">Look around</button>
-        <div id="johnsonactions" class="sidebar-brand">
-		    <h3>What do you want to do with the bartender?</h3>
-            <button type="button" class="btn btn-inverse talk" name="johnson" action="talk">Talk</button>
-            <button type="button" class="btn btn-inverse" id="attack">Attack</button>
-        </div>
-        <div id="reynoldactions" class="btn-group-vertical">
-		    <h3>What do you want to do with the shabby man?</h3>
-            <button type="button" class="btn btn-inverse talk" name="reynold" action="talk">Talk</button>
-            <button type="button" class="btn btn-inverse" id="attack">Attack</button>
-        </div>
-        </div>
-		</div>-->
-    
+
+
         {% block content %}
-        <div class="col-md-10">
-        <div id="main">
-          {% autoescape off %}{{archive}}{% endautoescape %}
-        
-        </div>
+        <div class="col-md-10 col-sm-8">
+          <div id="main">
+            {% autoescape off %}{{archive}}{% endautoescape %}
+
+          </div>
         </div>
         {% endblock %}
+
+        <div class="col-md-2 col-sm-2" id="char">
+          {{charname}}<br>
+          {{sex}}<br>
+          {{attrs}}
+        </div>
+
     </div>
     </div>
-        
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>-->
+
+
   </body>
 </html>
