@@ -83,6 +83,11 @@ def parse_request(request):
             attrs.append(str(request.POST.get('form_val')))
             profile.attrs = attrs
             profile.save()
+        elif i=='form_val2':
+            attrs = profile.attrs
+            attrs.append(str(request.POST.get('form_val2')))
+            profile.attrs = attrs
+            profile.save()
         elif i=='hair_color':
             attrs = profile.attrs
             attrs.append(str(request.POST.get('hair_color')))
