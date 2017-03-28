@@ -1,4 +1,3 @@
-
 $("#menu-toggle").click(function(e) {
 	e.preventDefault();
 	$("#wrapper").toggleClass("active");
@@ -7,11 +6,13 @@ $("#menu-toggle").click(function(e) {
 $(document).ready(function(){
 
 
-  function updateText(text) {
-  $("#main").append(text);
-  $(function () {$("html, body").animate({scrollTop: $('html, body').get(0).scrollHeight}, 2000);
-  });
-  }
+ function updateText(text) {
+    $("#main").remove("p, h1");
+    $("#main").empty();
+    $("#main").append(text);
+    //$(function () {$("html, body").animate({scrollTop: $('html, body').get(0).scrollHeight}, 2000);
+  //});
+}
 
 
  //Builds action buttons for content objects
@@ -63,7 +64,20 @@ $(document).ready(function(){
 	$.post('/actions/', {name: name, action: action, form_val: form_val} , updateText);
   });
 
+  $(document).on("click", ".hair_but2", function(){
+    console.log("PASS");
+	var name = $(this).attr("name");
+	var action = $(this).attr("action");
+	$(".height_form").hide();
+	$(".style_form").hide();
+	$(this).hide();
+	var form_val = $('input[name=optionsRadios]:checked', '.form').val();
+	var form_val2 = $('input[name=optionsRadios1]:checked', '.form2').val();
+	$.post('/actions/', {name: name, action: action, form_val: form_val, form_val2: form_val2} , updateText);
+  });
+
   $(document).on("click", ".hair_but", function(){
+    console.log("PASS");
 	var name = $(this).attr("name");
 	var action = $(this).attr("action");
 	$(".color_form").hide();
@@ -85,14 +99,16 @@ $(document).ready(function(){
 	$.post('/actions/', {name: name, action: action, charname: charname, sex: sex} , updateText);
   });
 
+
   //Wealth Form
-  $(document).on("click", ".wealth", function(){
+  $(document).on("click", ".wealth_but", function(){
+    console.log("WEALTH");
 	var name = $(this).attr("name");
 	var action = $(this).attr("action");
-	$(".wealthform").hide();
-	$(this).hide();
 	var wealth = $('input[name=optionsRadios]:checked', '.wealthform').val();
-	$.post('/actions/', {action: action, name: name, wealth: wealth}, updateText);
+	//var height = $('input[name=optionsRadios1]:checked', '.heightform').val();
+	//var build = $('input[name=optionsRadios2]:checked', '.buildform').val();
+	$.post('/actions/', {action: action, name: name, wealth: wealth}, updateText); //use form_val1 or something for height/build
   });
 
 });
