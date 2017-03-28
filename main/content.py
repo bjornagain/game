@@ -1,34 +1,52 @@
 act1 = {'intro': {
-            'intro': "<h1 id='header'>Welcome to the game of fabulous adventure!</h1> \
-                    <p>To play the game, just read the text in this window. \
-                    If you see something underlined, that means you can click on it. You'll see some buttons pop up at the bottom of the window. \
-                    Those buttons will give you things you can do, with the underlined thing that you clicked on. \
-                    Sometimes you'll see buttons pop up at the bottom of the window that aren't for anything underlined.  \
-                    These are more general actions you can take. Currently the text output does not automatically scroll down,  \
-                    so if you click on something and the text window doesn't change, you probably just need to scroll down to see the new text.  \
-                    You can always scroll back up to click on stuff. </p> \
+            'intro': "<p>The Frosty Swath. The inn leans ramshackle and pugnacious against the impenetrable rain and darkness of the night. \
+                A rickety faded old sign hangs from bronze hinges above the door. From the mud river of a street the inn stands on, she might look abandoned. \
+                The streets are empty; you couldn't see your hand in front of your face.<br><br>Through black blinding sheets of rain, a dark figure atop a horse emerges. \
+                What can be said of this mysterious character?<br><br> This will be your character for the duration of this story. Lets talk about this person...</p> \
                     \
-                    <fieldset class='sex'> Choose your sex  \
+                    <fieldset class='sex'>  \
+                    <br>Enter a Name: \
+                    <br><input type='text' style='font-size:30px;' class='form-control' id=\"nameform\">  \
+                    <br><br>Choose a sex  \
                         <label class='radio'>  \
                           <input type='radio' name='optionsRadios' id='optionsRadios1' value='male' checked>Male  \
                         </label>  \
                         <label class='radio'>  \
-                          <input type='radio' name='optionsRadios' id='optionsRadios2' value='female'>Female  \
-                        <input type='text' class='form-control' placeholder=\"Enter your character's name, and click Continue.\" id=\"nameform\">  \
+                          <input type='radio' name='optionsRadios' id='optionsRadios2' value='female'>Female \
+                        </label> \
                       </fieldset>  \
                     \
-                    <p><a class='sexform button' name='general' action='begin'>Continue</a></p>"},
+                    <p><a href='#' class='sexform button' name='intro' action='questions2'>Continue</a></p>",
 
-            'general': {
-                'begin': ["{charname} stands at the doorstep of a dilapidated old inn, the first sign of civilization {heshe} has seen for many days of travel  \
-                      through wild and strange lands. Rain is falling in relentless sheets out of the impenetrable darkness of the night. Though the inn barely looks habitable, \
-                      {charname}'s heart soars with relief at the site of warm light oozing from the windows, and {heshe} can even discern the familiar sounds of a friendly tavern \
-                      from behind the door. Squinting up through the rain, {heshe} can barely read the rickety old sign hanging over the door: \"Frosty Swath\".<br>  \
-                     \
-                     <a href='#' class='action button' name='general' action='questions2'>Continue</a>"],
+            'questions2': ["<div>{charname} is a", {'male':'male.', 'female': 'female.'}, "What else?</div> \
+                    <fieldset class='form'> How tall is {charname}?  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios' id='optionsRadios1' value='height_tall' checked>Tall  \
+                        </label>  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios' id='optionsRadios2' value='height_average'>Average  \
+                        </label>  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios' id='optionsRadios3' value='height_short' checked>Short  \
+                        </label>  \
+                    </fieldset>  \
+                      \
+                      <fieldset class='form2'> How is {charname} built?  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios1' id='optionsRadios2' value='stature_average'>Average  \
+                        </label>  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios1' id='optionsRadios3' value='stature_thin' checked>Thin  \
+                        </label>  \
+                        <label class='radio'>  \
+                          <input type='radio' name='optionsRadios1' id='optionsRadios4' value='stature_fat' checked>Fat  \
+                        </label>  \
+                    </fieldset>  \
+                      \
+                      <a href='#' class='hair_but2 button' name='intro' action='questions3'>Continue</a>"],
 
-
-                'questions2': ["<fieldset class='wealthform'> Let me ask you a couple questions about your character, {charname}...<br><br> How wealthy is {charname}?  \
+           'questions3': ["<div>{charname} is </div><div>How wealthy is {charname}?</div> \
+                    <fieldset class='wealthform'> \
                     <label class='radio'>  \
                         <input type='radio' name='optionsRadios' id='optionsRadios1' value='wealth_rich' checked>Wealthy. This means {heshe} is part of the aristocratic class.  \
                     </label>  \
@@ -39,38 +57,15 @@ act1 = {'intro': {
                         <input type='radio' name='optionsRadios' id='optionsRadios2' value='wealth_poor'>Poor. You are part of the lowest class of society.   \
                     </fieldset>  \
                       \
-                    <a href='#' class='wealth button' name='general' action='questions3'>Continue</a>"],
+                    <a href='#' class='wealth_but button' name='general' action='begin'>Continue</a>"]},
 
-                'questions3': ["<fieldset class='form'> How tall is {charname}?  \
-                        <label class='radio'>  \
-                          <input type='radio' name='optionsRadios' id='optionsRadios1' value='height_tall' checked>Tall  \
-                        </label>  \
-                        <label class='radio'>  \
-                          <input type='radio' name='optionsRadios' id='optionsRadios2' value='height_average'>Average  \
-                        </label>  \
-                        <label class='radio'>  \
-                          <input type='radio' name='optionsRadios' id='optionsRadios3' value='height_short' checked>Short  \
-                        </label>  \
-                      </fieldset>  \
-                      \
-                      <a href='#' class='form_but button' name='general' action='questions4'>Continue</a>"],
-
-                'questions4': ["<fieldset class='form'> How is {charname} built?  \
-                        <label class='radio'>  \
-                          <input type='radio' name='optionsRadios' id='optionsRadios1' value='stature_robust' checked>Robust. Strong, athletic.  \
-                        </label>  \
-                        <label class='radio'>  \
-                          <input type='radio' name='optionsRadios' id='optionsRadios2' value='stature_average'>Average  \
-                        </label>  \
-                        <label class='radio'>  \
-                          <input type='radio' name='optionsRadios' id='optionsRadios3' value='stature_thin' checked>Thin  \
-                        </label>  \
-                        <label class='radio'>  \
-                          <input type='radio' name='optionsRadios' id='optionsRadios4' value='stature_fat' checked>Fat  \
-                        </label>  \
-                      </fieldset>  \
-                    \
-                    <a href='#' class='form_but button' name='general' action='begin2'>Continue</a>"],
+            'general': {
+                'begin': ["{charname} stands at the doorstep of a dilapidated old inn, the first sign of civilization {heshe} has seen for many days of travel  \
+                      through wild and strange lands. Rain is falling in relentless sheets out of the impenetrable darkness of the night. Though the inn barely looks habitable, \
+                      {charname}'s heart soars with relief at the site of warm light oozing from the windows, and {heshe} can even discern the familiar sounds of a friendly tavern \
+                      from behind the door. Squinting up through the rain, {heshe} can barely read the rickety old sign hanging over the door: \"Frosty Swath\".<br>  \
+                     \
+                     <a href='#' class='action button' name='general' action='questions2'>Continue</a>"],
 
                     'begin2':["Gazing up at the sign, {charname} thinks to {himselfherself}, 'Frosty Swath. Yes, this is the place.'. <br><br>{Cheshe} reaches a hand to the door.  \
                       Whispering a silent thanks that {heshe} made this god forsaken journey in one piece... made it this far at least, {charname} grasps the doorknob...<br>  \
@@ -170,7 +165,8 @@ act1 = {'intro': {
                         "hair. <br><br>  \
                         \
                         From behind the bar, a <u class='npc' header='bartender' name='johnson' action='talk attack' actCont='talk2'>large moustachioed man</u> bellows out, \
-                        \"Ho there traveller! Have a seat and wet your whistle.\"."],
+                        \"Ho there traveller! Have a seat and wet your whistle.\".\
+                        <a href='#' class='form_but button' name='johnson' action='talk'>Continue</a>"],
 
 
                     'look': ["{charname} scans the room slowly, taking mental note of interesting details as they catch {hishers} eye. Behind the bar, \
@@ -189,7 +185,8 @@ act1 = {'intro': {
                       \"I\'ll have your largest mug of ale sir!\"<br><br> {charname} watches with large eyed anticipation as Johnson produces an absurdly huge metal tankard from under the bar, \
                       and begins pulling a frothy amber ale from one of the kegs behind him. Just as the beer fills to the rim of the mug, he deftly whisks the mug up and over the bar, sliding it roughly onto its pocked \
                       and stained surface, golden suds sloshing over the rim and down the sides. The large man \
-                      thrusts a beefy hand at {charname}\'s surprised face, \"Name\'s Johnson, pleased ta meet ya! I run this fine establishment. Where do you hale from stranger?\""],
+                      thrusts a beefy hand at {charname}\'s surprised face, \"Name\'s Johnson, pleased ta meet ya! I run this fine establishment. Where do you hale from stranger?\"\
+                      <a href='#' class='form_but button' name='johnson' action='talk2'>Continue</a>"],
 
                     "talk2": ["<fieldset class='form'> Where is {charname} from?  \
                         <label class='radio'>  \
@@ -327,7 +324,6 @@ act1 = {'intro': {
                                 <u class=\'npc\' header=\'crazy women\' name=\'wilma\' action=\'talk attack\' actCont=\'talk2\'>crazy hat lady</u>.",
                             'treasure_horde':"\"I seek Old Balkneys lost hoard!\". \"Mmm, treasure eh? Talk to old Wilma\", Johnson casts a glance across the room at a crazy hat lady."}}]
                     }}
-
 
 
 
